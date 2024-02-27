@@ -1,0 +1,53 @@
+<ThirdScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        
+        # Top part for Start/Stop Camera
+        BoxLayout:
+            size_hint_y: None
+            height: '48dp'
+            orientation: 'horizontal'
+
+            CustomButton:
+                text: 'Start FreeLook Camera'
+                on_press: root.start_camera()
+
+            CustomButton:
+                text: 'Stop FreeLook Camera'
+                on_press: root.stop_camera()
+
+        # Middle part for Camera View
+        BoxLayout:
+            size_hint_y: 0.5  # Adjust the size of the camera view
+            Image:
+                id: camera_image
+                allow_stretch: True
+
+        # Bottom part for directional buttons in a grid
+        GridLayout:
+            cols: 3
+            size_hint_y: None
+            height: '96dp'  # Adjust this height to ensure buttons are visible
+
+            Widget:  # Empty widget for spacing
+            CustomButton:
+                text: 'Up'
+                on_press: root.move_up()
+            Widget:  # Empty widget for spacing
+
+            CustomButton:
+                text: 'Left'
+                on_press: root.move_left()
+            Widget:  # Placeholder for center
+            CustomButton:
+                text: 'Right'
+                on_press: root.move_right()
+
+            Widget:  # Empty widget for spacing
+            CustomButton:
+                text: 'Down'
+                on_press: root.move_down()
+            Widget:  # Empty widget for spacing
+
+//
+

@@ -1,0 +1,143 @@
+#:import utils kivy.utils
+#:import Factory kivy.factory.Factory
+<ColoredLabel@Label>:
+    color: utils.get_color_from_hex('#FFFFFF')
+    size_hint_y: None
+    height: '48dp'
+
+<SettingsTextInput@TextInput>:
+    multiline: False
+    padding_y: (self.height - self.line_height) / 2
+    size_hint_y: None
+    height: '48dp'
+    background_normal: ''
+    background_color: utils.get_color_from_hex('#303030')
+    foreground_color: utils.get_color_from_hex('#AEFFFF')
+
+
+ScreenManager:
+    MainScreen:
+    FirstScreen:
+    SecondScreen:
+    ThirdScreen:
+    SettingsScreen:
+
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex('#455a64')
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Button:
+            text: 'Go to Presets Screen'
+            on_release: app.root.current = 'first'
+            size_hint_y: None
+            height: '48dp'
+
+        Button:
+            text: 'Go to Constellation Screen'
+            on_release: app.root.current = 'second'
+            size_hint_y: None
+            height: '48dp'
+
+        Button:
+            text: 'Go to Freelook Screen'
+            on_release: app.root.current = 'third'
+            size_hint_y: None
+            height: '48dp'
+            
+
+        Button:
+            text: 'Settings'
+            on_release: app.root.current = 'settings'
+            size_hint_y: None
+            height: '48dp'
+
+<FirstScreen>:
+    BoxLayout:
+        Button:
+            text: 'Back'
+            on_release: app.root.current = 'main'
+
+<SecondScreen>:
+    BoxLayout:
+        Button:
+            text: 'Back'
+            on_release: app.root.current = 'main'
+
+<ThirdScreen>:
+    # BoxLayout:
+
+    #     TextInput:
+    #         id: cam_id
+    #         hint_text: 'Enter Camera ID'
+    #         size_hint_y: None
+    #         height: '48dp'
+    #     Button:
+    #         text: 'Start Camera'
+    #         size_hint_y: None
+    #         height: '48dp'
+    #         on_press: root.start_camera(cam_id.text)
+    #     Button:
+    #         text: 'Stop Camera'
+    #         size_hint_y: None
+    #         height: '48dp'
+    #         on_press: root.stop_camera()
+    #     Image:
+    #         id: camera_image
+    # <FreeLookScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: 'Start FreeLook Camera'
+            size_hint_y: None
+            height: '48dp'
+            on_press: root.start_camera()
+        Button:
+            text: 'Stop FreeLook Camera'
+            size_hint_y: None
+            height: '48dp'
+            on_press: root.stop_camera()
+        Image:
+            id: camera_image
+            # The camera feed will be displayed here
+
+<SettingsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 10
+        padding: 10
+
+        Label:
+            text: 'Camera Connection'
+
+        TextInput:
+            id: camera_ip
+            hint_text: 'Enter Camera IP'
+            size_hint_y: None
+            height: '48dp'
+
+        TextInput:
+            id: camera_port
+            hint_text: 'Enter Camera port'
+            size_hint_y: None
+            height: '48dp'
+
+        Button:
+            text: 'Save Settings'
+            size_hint_y: None
+            height: '48dp'
+            # add the logic to save settings or handle the press event
+
+        Button:
+            text: 'Back'
+            size_hint_y: None
+            height: '48dp'
+            on_release: app.root.current = 'main'
